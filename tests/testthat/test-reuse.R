@@ -24,15 +24,15 @@ test_that("defaults to using the cache of the reuse package", {
   expect_true(pins::pin_exists(board, "one"))
 })
 
-test_that("supports overwrite with an argument", {
+test_that("supports update with an argument", {
   board <- pins::board_temp()
   one <- 1 %>% reuse("one", board = board)
-  two <- 2 %>% reuse("one", board = board, overwrite = TRUE)
+  two <- 2 %>% reuse("one", board = board, update = TRUE)
   expect_equal(two, 2)
 })
 
-test_that("supports overwrite with an option", {
-  withr::local_options(list(reuse.overwrite = TRUE))
+test_that("supports update with an option", {
+  withr::local_options(list(reuse.update = TRUE))
 
   board <- pins::board_temp()
   one <- 1 %>% reuse("one", board = board)

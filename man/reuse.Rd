@@ -10,7 +10,7 @@ reuse(
   name,
   board = board_reuse(),
   type = "qs",
-  overwrite = getOption("reuse.overwrite", default = FALSE)
+  update = getOption("reuse.update", default = FALSE)
 )
 
 board_reuse()
@@ -27,7 +27,7 @@ board_reuse()
 "csv", "rds", "json", "arrow", or "qs". If not supplied will use json for bare
 lists and rds for everything else.}
 
-\item{overwrite}{Logical. Overwrite the cache?}
+\item{update}{Logical. update the cache?}
 }
 \value{
 The R object written to or read from the cache.
@@ -40,7 +40,7 @@ one <- 1 \%>\% reuse("one")
 two <- 2 \%>\% reuse("one")
 two
 
-two <- 2 \%>\% reuse("one", overwrite = TRUE)
+two <- 2 \%>\% reuse("one", update = TRUE)
 two
 withr::local_options(list(reuse.board = pins::board_temp()))
 board_reuse()

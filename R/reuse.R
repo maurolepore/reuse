@@ -1,7 +1,7 @@
 #' Reuse R objects
 #'
 #' @inheritParams pins::pin_write
-#' @param overwrite Logical. Overwrite the cache?
+#' @param update Logical. update the cache?
 #'
 #' @return The R object written to or read from the cache.
 #' @export
@@ -11,14 +11,14 @@
 #' two <- 2 %>% reuse("one")
 #' two
 #'
-#' two <- 2 %>% reuse("one", overwrite = TRUE)
+#' two <- 2 %>% reuse("one", update = TRUE)
 #' two
 reuse <- function(x,
                   name,
                   board = board_reuse(),
                   type = "qs",
-                  overwrite = getOption("reuse.overwrite", default = FALSE)) {
-  if (overwrite || !pins::pin_exists(board, name = name)) {
+                  update = getOption("reuse.update", default = FALSE)) {
+  if (update || !pins::pin_exists(board, name = name)) {
     pins::pin_write(board, x = x, name = name, type = type)
   }
   pins::pin_read(board, name = name)

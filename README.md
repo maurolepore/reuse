@@ -4,9 +4,28 @@
 # reuse
 
 <!-- badges: start -->
+
+[![Codecov test
+coverage](https://codecov.io/gh/maurolepore/reuse/branch/main/graph/badge.svg)](https://app.codecov.io/gh/maurolepore/reuse?branch=main)
 <!-- badges: end -->
 
-The goal of reuse is to reuse R objects.
+The goal of reuse is to avoid re-running slow computations, particularly
+in pipes.
+
+`reuse::reuse()` combines features of `pins::pin_read()` and
+`pins::pin_write()` but:
+
+-   can be used anywhere in a pipe,
+-   defaults to using a cache directory appropriate for your system,
+-   can update the cache for one object or an entire R session.
+
+Main features:
+
+-   Can be used anywhere in a pipe.
+-   can update objects with the argument `update` or the global option
+    `reuse.update`.
+-   can set a cache “board” (folder) with the global option
+    `reuse.board`.
 
 ## Installation
 
@@ -28,32 +47,31 @@ library(reuse)
 
 ``` r
 one <- 1 %>% reuse("one")
-#> Creating new version '20220330T203247Z-4ebb2'
+#> Creating new version '20220330T211407Z-4ebb2'
 #> Writing to pin 'one'
 two <- 2 %>% reuse("one")
 two
 #> [1] 1
 ```
 
--   You can overwrite the cache for one call with the argument
-    `overwrite`.
+-   You can update the cache for one call with the argument `update`.
 
 ``` r
-two <- 2 %>% reuse("one", overwrite = TRUE)
-#> Replacing version '20220330T203247Z-4ebb2' with '20220330T203247Z-63a73'
+two <- 2 %>% reuse("one", update = TRUE)
+#> Replacing version '20220330T211407Z-4ebb2' with '20220330T211407Z-63a73'
 #> Writing to pin 'one'
 two
 #> [1] 2
 ```
 
--   You can overwrite the cache for one session with the option
-    `reuse.overwrite`.
+-   You can update the cache for one session with the option
+    `reuse.update`.
 
 ``` r
-options(reuse.overwrite = TRUE)
+options(reuse.update = TRUE)
 
 three <- 3 %>% reuse("one")
-#> Replacing version '20220330T203247Z-63a73' with '20220330T203247Z-f9a7c'
+#> Replacing version '20220330T211407Z-63a73' with '20220330T211407Z-f9a7c'
 #> Writing to pin 'one'
 three
 #> [1] 3
@@ -84,14 +102,14 @@ board %>% pin_meta("one")
 #>  $ type       : chr "qs"
 #>  $ title      : chr "one: a pinned double vector"
 #>  $ description: NULL
-#>  $ created    : POSIXct[1:1], format: "2022-03-30 17:32:00"
+#>  $ created    : POSIXct[1:1], format: "2022-03-30 18:14:00"
 #>  $ api_version: num 1
 #>  $ user       : list()
 #>  $ name       : chr "one"
 #>  $ local      :List of 3
-#>   ..$ dir    : 'fs_path' chr "~/.cache/reuse/one/20220330T203247Z-f9a7c"
+#>   ..$ dir    : 'fs_path' chr "~/.cache/reuse/one/20220330T211407Z-f9a7c"
 #>   ..$ url    : NULL
-#>   ..$ version: chr "20220330T203247Z-f9a7c"
+#>   ..$ version: chr "20220330T211407Z-f9a7c"
 
 board %>% pin_delete("one")
 ```
@@ -101,12 +119,12 @@ board %>% pin_delete("one")
 ``` r
 custom <- pins::board_folder(tempdir())
 1 %>% reuse("abc", board = custom)
-#> Creating new version '20220330T203248Z-4ebb2'
+#> Creating new version '20220330T211407Z-4ebb2'
 #> Writing to pin 'abc'
 #> [1] 1
 
-pins::pin_exists(board = custom, "abc")
-#> [1] TRUE
+pins::pin_read(board = custom, "abc")
+#> [1] 1
 ```
 
 -   You can use a custom cache folder with the option `reuse.board`.
@@ -114,7 +132,7 @@ pins::pin_exists(board = custom, "abc")
 ``` r
 options(reuse.board = custom)
 1 %>% reuse("def", board = custom)
-#> Creating new version '20220330T203248Z-4ebb2'
+#> Creating new version '20220330T211407Z-4ebb2'
 #> Writing to pin 'def'
 #> [1] 1
 

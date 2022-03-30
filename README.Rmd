@@ -16,9 +16,26 @@ knitr::opts_chunk$set(
 # reuse
 
 <!-- badges: start -->
+[![Codecov test coverage](https://codecov.io/gh/maurolepore/reuse/branch/main/graph/badge.svg)](https://app.codecov.io/gh/maurolepore/reuse?branch=main)
 <!-- badges: end -->
 
-The goal of reuse is to reuse R objects.
+The goal of reuse is to avoid re-running slow computations, particularly in
+pipes. 
+
+`reuse::reuse()` combines features of `pins::pin_read()` and `pins::pin_write()`
+but:
+
+* can be used anywhere in a pipe, 
+* defaults to using a cache directory appropriate for your system,
+* can update the cache for one object or an entire R session.
+
+
+Main features:
+
+* Can be used anywhere in a pipe.
+* can update objects with the argument `update` or the global option
+`reuse.update`.
+* can set a cache "board" (folder) with the global option `reuse.board`.
 
 ## Installation
 
@@ -44,17 +61,17 @@ two <- 2 %>% reuse("one")
 two
 ```
 
-* You can overwrite the cache for one call with the argument `overwrite`.
+* You can update the cache for one call with the argument `update`.
 
 ```{r}
-two <- 2 %>% reuse("one", overwrite = TRUE)
+two <- 2 %>% reuse("one", update = TRUE)
 two
 ```
 
-* You can overwrite the cache for one session with the option `reuse.overwrite`.
+* You can update the cache for one session with the option `reuse.update`.
 
 ```{r}
-options(reuse.overwrite = TRUE)
+options(reuse.update = TRUE)
 
 three <- 3 %>% reuse("one")
 three
@@ -86,7 +103,7 @@ board %>% pin_delete("one")
 custom <- pins::board_folder(tempdir())
 1 %>% reuse("abc", board = custom)
 
-pins::pin_exists(board = custom, "abc")
+pins::pin_read(board = custom, "abc")
 ```
 
 * You can use a custom cache folder with the option `reuse.board`.
