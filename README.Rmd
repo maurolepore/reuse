@@ -72,7 +72,6 @@ list.files(cache_dir)
 use to manage your cached objects.
 
 ```{r}
-library(pins)
-pin_delete(board = board_folder(cache_dir), names = "one")
+pins::pin_delete(board = pins::board_folder(cache_dir), names = "one")
 list.files(cache_dir)
 ```

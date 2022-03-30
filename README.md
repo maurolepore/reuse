@@ -29,7 +29,7 @@ library(reuse)
 ``` r
 one <- 1 %>% reuse("one")
 #> Guessing `type = 'rds'`
-#> Creating new version '20220330T184316Z-10a5d'
+#> Creating new version '20220330T190418Z-10a5d'
 #> Writing to pin 'one'
 two <- 2 %>% reuse("one")
 two
@@ -42,7 +42,7 @@ two
 ``` r
 two <- 2 %>% reuse("one", overwrite = TRUE)
 #> Guessing `type = 'rds'`
-#> Replacing version '20220330T184316Z-10a5d' with '20220330T184316Z-30a9b'
+#> Replacing version '20220330T190418Z-10a5d' with '20220330T190418Z-30a9b'
 #> Writing to pin 'one'
 two
 #> [1] 2
@@ -56,7 +56,7 @@ options(reuse.overwrite = TRUE)
 
 three <- 3 %>% reuse("one")
 #> Guessing `type = 'rds'`
-#> Replacing version '20220330T184316Z-30a9b' with '20220330T184316Z-30ea3'
+#> Replacing version '20220330T190418Z-30a9b' with '20220330T190418Z-30ea3'
 #> Writing to pin 'one'
 three
 #> [1] 3
@@ -75,8 +75,7 @@ list.files(cache_dir)
     you can use to manage your cached objects.
 
 ``` r
-library(pins)
-pin_delete(board = board_folder(cache_dir), names = "one")
+pins::pin_delete(board = pins::board_folder(cache_dir), names = "one")
 list.files(cache_dir)
 #> character(0)
 ```
