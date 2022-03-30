@@ -47,3 +47,11 @@ test_that("by default saves .qs files", {
   type <- pins::pin_meta(board = board, "one")$type
   expect_equal(type, "qs")
 })
+
+test_that("can use a custom board set with an option", {
+  custom <- pins::board_temp()
+  withr::local_options(list(reuse.board = custom))
+
+  reuse(1, "one")
+  expect_true(pins::pin_exists(custom, "one"))
+})

@@ -79,3 +79,21 @@ board %>% pin_meta("one")
 
 board %>% pin_delete("one")
 ```
+
+* You can use a custom cache folder with the argument `board`.
+
+```{r}
+custom <- pins::board_folder(tempdir())
+1 %>% reuse("abc", board = custom)
+
+pins::pin_exists(board = custom, "abc")
+```
+
+* You can use a custom cache folder with the option `reuse.board`.
+
+```{r}
+options(reuse.board = custom)
+1 %>% reuse("def", board = custom)
+
+pins::pin_exists(board = custom, "def")
+```
