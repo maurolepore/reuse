@@ -16,9 +16,10 @@
 reuse <- function(x,
                   name,
                   board = pins::board_folder(rappdirs::user_cache_dir("reuse")),
+                  type = "qs",
                   overwrite = getOption("reuse.overwrite", default = FALSE)) {
   if (overwrite || !pins::pin_exists(board, name = name)) {
-    pins::pin_write(board, x = x, name = name)
+    pins::pin_write(board, x = x, name = name, type = type)
   }
   pins::pin_read(board, name = name)
 }

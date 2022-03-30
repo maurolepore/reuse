@@ -13,6 +13,7 @@ Imports:
     fs,
     magrittr,
     pins,
+    qs,
     rappdirs
 Suggests: 
     testthat (>= 3.0.0),

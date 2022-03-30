@@ -8,6 +8,7 @@ reuse(
   x,
   name,
   board = pins::board_folder(rappdirs::user_cache_dir("reuse")),
+  type = "qs",
   overwrite = getOption("reuse.overwrite", default = FALSE)
 )
 }
@@ -18,6 +19,10 @@ reuse(
 
 \item{board}{A pin board, created by \code{\link[pins:board_folder]{board_folder()}}, \code{\link[pins:board_rsconnect]{board_rsconnect()}},
 \code{\link[pins:board_url]{board_url()}} or another \code{board_} function.}
+
+\item{type}{File type used to save \code{x} to disk. Must be one of
+"csv", "rds", "json", "arrow", or "qs". If not supplied will use json for bare
+lists and rds for everything else.}
 
 \item{overwrite}{Logical. Overwrite the cache?}
 }

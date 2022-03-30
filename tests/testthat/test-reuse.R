@@ -39,3 +39,11 @@ test_that("supports overwrite with an option", {
   two <- 2 %>% reuse("one", board = board)
   expect_equal(two, 2)
 })
+
+test_that("by default saves .qs files", {
+  board <- pins::board_temp()
+
+  reuse(1, "one", board = board)
+  type <- pins::pin_meta(board = board, "one")$type
+  expect_equal(type, "qs")
+})
