@@ -51,10 +51,12 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">reuse</span><span class="op">(</span>
   <span class="va">x</span>,
   <span class="va">name</span>,
-  board <span class="op">=</span> <span class="fu">pins</span><span class="fu">::</span><span class="fu"><a href="https://pins.rstudio.com/reference/board_folder.html" class="external-link">board_folder</a></span><span class="op">(</span><span class="fu">rappdirs</span><span class="fu">::</span><span class="fu"><a href="https://rappdirs.r-lib.org/reference/user_cache_dir.html" class="external-link">user_cache_dir</a></span><span class="op">(</span><span class="st">"reuse"</span><span class="op">)</span><span class="op">)</span>,
+  board <span class="op">=</span> <span class="fu">board_reuse</span><span class="op">(</span><span class="op">)</span>,
   type <span class="op">=</span> <span class="st">"qs"</span>,
   overwrite <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"reuse.overwrite"</span>, default <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="op">)</span></code></pre></div>
+<span class="op">)</span>
+
+<span class="fu">board_reuse</span><span class="op">(</span><span class="op">)</span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -81,17 +83,27 @@ lists and rds for everything else.</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">one</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">reuse</span><span class="op">(</span><span class="st">"one"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Creating new version '20220330T194606Z-4ebb2'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Creating new version '20220330T203756Z-4ebb2'</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Writing to pin 'one'</span>
 <span class="r-in"><span class="va">two</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">reuse</span><span class="op">(</span><span class="st">"one"</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">two</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">two</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">reuse</span><span class="op">(</span><span class="st">"one"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Replacing version '20220330T194606Z-4ebb2' with '20220330T194606Z-63a73'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Replacing version '20220330T203756Z-4ebb2' with '20220330T203756Z-63a73'</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Writing to pin 'one'</span>
 <span class="r-in"><span class="va">two</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
+<span class="r-in"><span class="fu">withr</span><span class="fu">::</span><span class="fu"><a href="https://withr.r-lib.org/reference/with_options.html" class="external-link">local_options</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>reuse.board <span class="op">=</span> <span class="fu">pins</span><span class="fu">::</span><span class="fu"><a href="https://pins.rstudio.com/reference/board_folder.html" class="external-link">board_temp</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="fu">board_reuse</span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in board_reuse():</span> could not find function "board_reuse"</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="fu">pins</span><span class="fu">::</span><span class="fu"><a href="https://pins.rstudio.com/reference/pin_exists.html" class="external-link">pin_exists</a></span><span class="op">(</span><span class="fu">board_reuse</span><span class="op">(</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"one"</span><span class="op">)</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in board_reuse():</span> could not find function "board_reuse"</span>
+<span class="r-in"><span class="fl">1</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">reuse</span><span class="op">(</span><span class="st">"one"</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
+<span class="r-in"><span class="fu">pins</span><span class="fu">::</span><span class="fu"><a href="https://pins.rstudio.com/reference/pin_exists.html" class="external-link">pin_exists</a></span><span class="op">(</span><span class="fu">board_reuse</span><span class="op">(</span><span class="op">)</span>, name <span class="op">=</span> <span class="st">"one"</span><span class="op">)</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in board_reuse():</span> could not find function "board_reuse"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
