@@ -1,4 +1,4 @@
-test_that("is pipable", {
+test_that("it plays well with the pipe", {
   out <- 1 %>% reuse("one", board = pins::board_temp())
   expect_equal(out, 1)
 })

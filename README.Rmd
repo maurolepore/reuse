@@ -35,7 +35,7 @@ devtools::install_github("maurolepore/reuse")
 library(reuse)
 ```
 
-* Is pipable.
+* Is plays well with the pipe.
 * It saves computations, reusing the cache if possible.
 
 ```{r}
