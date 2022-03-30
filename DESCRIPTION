@@ -9,6 +9,10 @@ License: MIT + file LICENSE
 URL: https://github.com/maurolepore/reuse,
     https://maurolepore.github.io/reuse/
 BugReports: https://github.com/maurolepore/reuse/issues
+Imports: 
+    fs,
+    rappdirs,
+    withr
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

@@ -31,9 +31,31 @@ devtools::install_github("maurolepore/reuse")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ```{r example}
 library(reuse)
-# TODO
+```
+
+* Is pipable.
+* It saves computations, reusing the cache if possible.
+
+```{r}
+one <- 1 |> reuse("one")
+two <- 2 |> reuse("one")
+two
+```
+
+* You can overwrite the cache for one call with the argument `overwrite`.
+
+```{r}
+two <- 2 |> reuse("one", overwrite = TRUE)
+two
+```
+
+* You can overwrite the cache for one session with the option `reuse.overwrite`.
+
+```{r}
+options(reuse.overwrite = TRUE)
+
+three <- 3 |> reuse("one")
+three
 ```
