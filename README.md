@@ -29,7 +29,7 @@ library(reuse)
 ``` r
 one <- 1 %>% reuse("one")
 #> Guessing `type = 'rds'`
-#> Creating new version '20220330T184054Z-10a5d'
+#> Creating new version '20220330T184203Z-10a5d'
 #> Writing to pin 'one'
 two <- 2 %>% reuse("one")
 two
@@ -42,7 +42,7 @@ two
 ``` r
 two <- 2 %>% reuse("one", overwrite = TRUE)
 #> Guessing `type = 'rds'`
-#> Replacing version '20220330T184054Z-10a5d' with '20220330T184054Z-30a9b'
+#> Replacing version '20220330T184203Z-10a5d' with '20220330T184203Z-30a9b'
 #> Writing to pin 'one'
 two
 #> [1] 2
@@ -56,7 +56,7 @@ options(reuse.overwrite = TRUE)
 
 three <- 3 %>% reuse("one")
 #> Guessing `type = 'rds'`
-#> Replacing version '20220330T184054Z-30a9b' with '20220330T184054Z-30ea3'
+#> Replacing version '20220330T184203Z-30a9b' with '20220330T184203Z-30ea3'
 #> Writing to pin 'one'
 three
 #> [1] 3
