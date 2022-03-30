@@ -25,6 +25,7 @@ reuse <- function(x,
 }
 
 #' @rdname reuse
+#' @export
 #' @examples
 #' withr::local_options(list(reuse.board = pins::board_temp()))
 #' board_reuse()

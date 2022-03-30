@@ -20,22 +20,14 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 The goal of reuse is to avoid re-running slow computations, particularly in
-pipes. 
+pipes.
 
 `reuse::reuse()` combines features of `pins::pin_read()` and `pins::pin_write()`
-but:
+with some differences:
 
-* can be used anywhere in a pipe, 
-* defaults to using a cache directory appropriate for your system,
-* can update the cache for one object or an entire R session.
-
-
-Main features:
-
-* Can be used anywhere in a pipe.
-* can update objects with the argument `update` or the global option
-`reuse.update`.
-* can set a cache "board" (folder) with the global option `reuse.board`.
+* You can use it anywhere in a pipe.
+* You don't have to specify the `board` explicitly.
+* You can update the cache inside `reuse()` or globally with `options()`.
 
 ## Installation
 
