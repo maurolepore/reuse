@@ -1,13 +1,15 @@
 Package: reuse
-Title: What the Package Does (One Line, Title Case)
+Title: Reuse R Objects
 Version: 0.0.0.9000
 Authors@R: c(
     person("Mauro", "Lepore", , "maurolepore@gmail.com", role = c("aut", "ctr", "cre"),
-           comment = c(ORCID = "0000-0002-1986-7988")),
-    person("2 Degrees Investing Initiative", , , "contact@2degrees-investing.org", role = c("cph", "fnd"))
+           comment = c(ORCID = "0000-0002-1986-7988"))
   )
-Description: For more information visit <https://2degrees-investing.org/>.
+Description: Reuse R objects.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
