@@ -2,18 +2,18 @@
 % Please edit documentation in R/reuse.R
 \name{reuse}
 \alias{reuse}
-\alias{reuse_board}
+\alias{board_reuse}
 \title{Reuse R objects}
 \usage{
 reuse(
   x,
   name,
-  board = reuse_board(),
+  board = board_reuse(),
   type = "qs",
   overwrite = getOption("reuse.overwrite", default = FALSE)
 )
 
-reuse_board()
+board_reuse()
 }
 \arguments{
 \item{x}{An object (typically a data frame) to pin.}
@@ -43,9 +43,9 @@ two
 two <- 2 \%>\% reuse("one", overwrite = TRUE)
 two
 withr::local_options(list(reuse.board = pins::board_temp()))
-reuse_board()
+board_reuse()
 
-pins::pin_exists(reuse_board(), name = "one")
+pins::pin_exists(board_reuse(), name = "one")
 1 \%>\% reuse("one")
-pins::pin_exists(reuse_board(), name = "one")
+pins::pin_exists(board_reuse(), name = "one")
 }
