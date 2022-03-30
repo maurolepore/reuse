@@ -1,4 +1,6 @@
 reuse <- function(x, name, board) {
-  pins::pin_write(board, x, name)
-  x
+  if (!pins::pin_exists(board, name = name)) {
+    pins::pin_write(board, x = x, name = name)
+  }
+  pins::pin_read(board, name = name)
 }
