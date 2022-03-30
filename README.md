@@ -28,8 +28,7 @@ library(reuse)
 
 ``` r
 one <- 1 %>% reuse("one")
-#> Guessing `type = 'rds'`
-#> Creating new version '20220330T190418Z-10a5d'
+#> Creating new version '20220330T194223Z-4ebb2'
 #> Writing to pin 'one'
 two <- 2 %>% reuse("one")
 two
@@ -41,8 +40,7 @@ two
 
 ``` r
 two <- 2 %>% reuse("one", overwrite = TRUE)
-#> Guessing `type = 'rds'`
-#> Replacing version '20220330T190418Z-10a5d' with '20220330T190418Z-30a9b'
+#> Replacing version '20220330T194223Z-4ebb2' with '20220330T194223Z-63a73'
 #> Writing to pin 'one'
 two
 #> [1] 2
@@ -55,27 +53,45 @@ two
 options(reuse.overwrite = TRUE)
 
 three <- 3 %>% reuse("one")
-#> Guessing `type = 'rds'`
-#> Replacing version '20220330T190418Z-30a9b' with '20220330T190418Z-30ea3'
+#> Replacing version '20220330T194223Z-63a73' with '20220330T194223Z-f9a7c'
 #> Writing to pin 'one'
 three
 #> [1] 3
 ```
 
--   By default it uses the appropriate directory for Linux, Mac, and
-    Windows, via the [rappdirs](https://rappdirs.r-lib.org/) package.
+-   The default cache folder uses the appropriate directory for Linux,
+    Mac, and Windows, via the [rappdirs](https://rappdirs.r-lib.org/)
+    package.
 
 ``` r
 cache_dir <- rappdirs::user_cache_dir("reuse")
-list.files(cache_dir)
-#> [1] "one"
+dir.exists(file.path(cache_dir, "one"))
+#> [1] TRUE
 ```
 
 -   It’s based on the [pins](https://pins.rstudio.com/) package, which
-    you can use to manage your cached objects.
+    you can use to manage your cache folder a.k.a. “board”.
 
 ``` r
-pins::pin_delete(board = pins::board_folder(cache_dir), names = "one")
-list.files(cache_dir)
-#> character(0)
+library(pins)
+
+board <- board_folder(cache_dir)
+board %>% pin_meta("one")
+#> List of 11
+#>  $ file       : chr "one.qs"
+#>  $ file_size  : 'fs_bytes' int 46
+#>  $ pin_hash   : chr "f9a7c94233173a90"
+#>  $ type       : chr "qs"
+#>  $ title      : chr "one: a pinned double vector"
+#>  $ description: NULL
+#>  $ created    : POSIXct[1:1], format: "2022-03-30 16:42:00"
+#>  $ api_version: num 1
+#>  $ user       : list()
+#>  $ name       : chr "one"
+#>  $ local      :List of 3
+#>   ..$ dir    : 'fs_path' chr "~/.cache/reuse/one/20220330T194223Z-f9a7c"
+#>   ..$ url    : NULL
+#>   ..$ version: chr "20220330T194223Z-f9a7c"
+
+board %>% pin_delete("one")
 ```

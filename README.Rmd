@@ -60,18 +60,22 @@ three <- 3 %>% reuse("one")
 three
 ```
 
-* By default it uses the appropriate directory for Linux, Mac, and Windows, via
-the [rappdirs](https://rappdirs.r-lib.org/) package.
+* The default cache folder uses the appropriate directory for Linux, Mac, and
+Windows, via the [rappdirs](https://rappdirs.r-lib.org/) package.
 
 ```{r}
 cache_dir <- rappdirs::user_cache_dir("reuse")
-list.files(cache_dir)
+dir.exists(file.path(cache_dir, "one"))
 ```
 
 * It's based on the [pins](https://pins.rstudio.com/) package, which you can
-use to manage your cached objects.
+use to manage your cache folder a.k.a. "board".
 
 ```{r}
-pins::pin_delete(board = pins::board_folder(cache_dir), names = "one")
-list.files(cache_dir)
+library(pins)
+
+board <- board_folder(cache_dir)
+board %>% pin_meta("one")
+
+board %>% pin_delete("one")
 ```
