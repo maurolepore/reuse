@@ -1,4 +1,4 @@
-#' Reuse R objects if possible
+#' Reuse R objects
 #'
 #' @inheritParams pins::pin_write
 #' @param overwrite Logical. Overwrite the cache?

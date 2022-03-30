@@ -2,4 +2,6 @@
 
 export("%>%")
 export(reuse)
+importFrom(fs,dir_ls)
+importFrom(fs,path)
 importFrom(magrittr,"%>%")

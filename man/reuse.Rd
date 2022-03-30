@@ -2,7 +2,7 @@
 % Please edit documentation in R/reuse.R
 \name{reuse}
 \alias{reuse}
-\title{Reuse R objects if possible}
+\title{Reuse R objects}
 \usage{
 reuse(
   x,
@@ -25,7 +25,7 @@ reuse(
 The R object written to or read from the cache.
 }
 \description{
-Reuse R objects if possible
+Reuse R objects
 }
 \examples{
 one <- 1 \%>\% reuse("one")
