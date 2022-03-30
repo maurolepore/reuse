@@ -52,6 +52,7 @@
   <span class="va">x</span>,
   <span class="va">name</span>,
   board <span class="op">=</span> <span class="fu">pins</span><span class="fu">::</span><span class="fu"><a href="https://pins.rstudio.com/reference/board_folder.html" class="external-link">board_folder</a></span><span class="op">(</span><span class="fu">rappdirs</span><span class="fu">::</span><span class="fu"><a href="https://rappdirs.r-lib.org/reference/user_cache_dir.html" class="external-link">user_cache_dir</a></span><span class="op">(</span><span class="st">"reuse"</span><span class="op">)</span><span class="op">)</span>,
+  type <span class="op">=</span> <span class="st">"qs"</span>,
   overwrite <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"reuse.overwrite"</span>, default <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="op">)</span></code></pre></div>
     </div>
@@ -65,6 +66,10 @@
 <dt>board</dt>
 <dd><p>A pin board, created by <code><a href="https://pins.rstudio.com/reference/board_folder.html" class="external-link">board_folder()</a></code>, <code><a href="https://pins.rstudio.com/reference/board_rsconnect.html" class="external-link">board_rsconnect()</a></code>,
 <code><a href="https://pins.rstudio.com/reference/board_url.html" class="external-link">board_url()</a></code> or another <code>board_</code> function.</p></dd>
+<dt>type</dt>
+<dd><p>File type used to save <code>x</code> to disk. Must be one of
+"csv", "rds", "json", "arrow", or "qs". If not supplied will use json for bare
+lists and rds for everything else.</p></dd>
 <dt>overwrite</dt>
 <dd><p>Logical. Overwrite the cache?</p></dd>
 </dl></div>
@@ -76,16 +81,14 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">one</span> <span class="op">&lt;-</span> <span class="fl">1</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">reuse</span><span class="op">(</span><span class="st">"one"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Guessing `type = 'rds'`</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Creating new version '20220330T190736Z-10a5d'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Creating new version '20220330T193442Z-4ebb2'</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Writing to pin 'one'</span>
 <span class="r-in"><span class="va">two</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">reuse</span><span class="op">(</span><span class="st">"one"</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">two</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">two</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="op"><a href="pipe.html">%&gt;%</a></span> <span class="fu">reuse</span><span class="op">(</span><span class="st">"one"</span>, overwrite <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Guessing `type = 'rds'`</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Replacing version '20220330T190736Z-10a5d' with '20220330T190736Z-30a9b'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Replacing version '20220330T193442Z-4ebb2' with '20220330T193443Z-63a73'</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Writing to pin 'one'</span>
 <span class="r-in"><span class="va">two</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
