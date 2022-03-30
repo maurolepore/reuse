@@ -1,18 +1,17 @@
 Package: reuse
 Title: Reuse R Objects
 Version: 0.0.0.9000
-Authors@R: c(
+Authors@R: 
     person("Mauro", "Lepore", , "maurolepore@gmail.com", role = c("aut", "ctr", "cre"),
            comment = c(ORCID = "0000-0002-1986-7988"))
-  )
 Description: Reuse R objects.
 License: MIT + file LICENSE
-Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
-Suggests: 
-    testthat (>= 3.0.0)
-Config/testthat/edition: 3
 URL: https://github.com/maurolepore/reuse,
     https://maurolepore.github.io/reuse/
 BugReports: https://github.com/maurolepore/reuse/issues
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
