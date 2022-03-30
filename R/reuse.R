@@ -7,11 +7,11 @@
 #' @export
 #'
 #' @examples
-#' one <- 1 |> reuse("one")
-#' two <- 2 |> reuse("one")
+#' one <- 1 %>% reuse("one")
+#' two <- 2 %>% reuse("one")
 #' two
 #'
-#' two <- 2 |> reuse("one", overwrite = TRUE)
+#' two <- 2 %>% reuse("one", overwrite = TRUE)
 #' two
 reuse <- function(x,
                   name,
