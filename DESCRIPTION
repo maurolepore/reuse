@@ -1,13 +1,14 @@
 Package: reuse
 Title: Reuse R Objects
 Version: 0.0.0.9001
-Authors@R: 
-    c(person("Mauro", "Lepore", , "maurolepore@gmail.com", role = c("aut", "ctr", "cre"),
+Authors@R: c(
+    person("Mauro", "Lepore", , "maurolepore@gmail.com", role = c("aut", "ctr", "cre"),
            comment = c(ORCID = "0000-0002-1986-7988")),
-      person("Julie","Vienne", , "j.vienne@hotmail.com", role = "aut",
+    person("Julie", "Vienne", , "j.vienne@hotmail.com", role = "aut",
            comment = c(ORCID = "0000-0002-2848-6095")),
-      person("Linda", "Delacombaz", , "linda@2degrees-investing.org", role = c("aut"),
-           comment = c(ORCID = "0000-0002-3842-4189")))    
+    person("Linda", "Delacombaz", , "linda@2degrees-investing.org", role = "aut",
+           comment = c(ORCID = "0000-0002-3842-4189"))
+  )
 Description: Reuse R objects.
 License: MIT + file LICENSE
 URL: https://github.com/maurolepore/reuse,
