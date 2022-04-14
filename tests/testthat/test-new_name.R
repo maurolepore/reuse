@@ -8,7 +8,6 @@ test_that("new_name() works with no error", {
 })
 
 test_that("new_name() creates 'new' with no error ", {
-  skip("First new_name() needs to gain the argument `board`")
   board <- pins::board_temp()
   reuse(1, "old", board)
 
