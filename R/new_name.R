@@ -4,6 +4,7 @@ new_name <- function(old, new, board) {
 
   new <- reuse(new_pin, new, board)
 
+  pins::pin_delete(board, old)
 
 }
 
