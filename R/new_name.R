@@ -6,4 +6,3 @@ new_name <- function(old, new, board) {
 
   invisible(new)
 }
-
