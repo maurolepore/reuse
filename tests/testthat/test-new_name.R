@@ -23,3 +23,13 @@ test_that("new_name() takes a `board`", {
   none <- NA
   expect_error(new_name("old", "new", board = board), none)
 })
+
+test_that("new_name() deletes 'old' in the end with no error", {
+  board <- pins::board_temp()
+  reuse(1, "old", board)
+
+  none <- NA
+  expect_error(new_name("old", "new", board), none)
+
+  expect_false(pins::pin_exists(board = board, "old"))
+})
