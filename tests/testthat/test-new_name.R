@@ -1,4 +1,4 @@
-test_that("new_name() creates 'new' with no error ", {
+test_that("creates 'new' with no error ", {
   board <- pins::board_temp()
   reuse(1, "old", board)
 
@@ -8,14 +8,14 @@ test_that("new_name() creates 'new' with no error ", {
   expect_true(pins::pin_exists(board = board, "new"))
 })
 
-test_that("new_name() takes a `board`", {
+test_that("takes a `board`", {
   board <- pins::board_temp()
   reuse(1, "old", board)
   none <- NA
   expect_error(new_name("old", "new", board = board), none)
 })
 
-test_that("new_name() deletes 'old' in the end with no error", {
+test_that("deletes 'old' in the end with no error", {
   board <- pins::board_temp()
   reuse(1, "old", board)
 
