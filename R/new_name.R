@@ -1,17 +1,23 @@
-#' Title
+#' Rename an R object you're reusing
 #'
 #' @inheritParams reuse
-#' @param old String. The name of the old object.
-#' @param new String. The name of the new object.
+#' @param old,new String. The name of the old and new objects.
 #'
 #' @return The object stored as 'new'.
 #' @export
 #'
 #' @examples
-#' board <- pins::board_temp()
-#' reuse(1, "old", board)
-#' new_name("old", "new", board)
-#' reuse(name = "new")
+#' library(pins)
+#'
+#' board <- board_temp()
+#' x <- 1
+#'
+#' x %>% reuse("old", board)
+#' pin_exists("old", board = board)
+#'
+#' "old" %>% new_name("new", board)
+#' pin_exists("old", board = board)
+#' pin_exists("new", board = board)
 new_name <- function(old, new, board) {
   new_pin <- pins::pin_read(board, old)
   new <- reuse(new_pin, new, board)

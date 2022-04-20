@@ -2,14 +2,12 @@
 % Please edit documentation in R/new_name.R
 \name{new_name}
 \alias{new_name}
-\title{Title}
+\title{Rename an R object you're reusing}
 \usage{
 new_name(old, new, board)
 }
 \arguments{
-\item{old}{String. The name of the old object.}
-
-\item{new}{String. The name of the new object.}
+\item{old, new}{String. The name of the old and new objects.}
 
 \item{board}{A pin board, created by \code{\link[pins:board_folder]{board_folder()}}, \code{\link[pins:board_rsconnect]{board_rsconnect()}},
 \code{\link[pins:board_url]{board_url()}} or another \code{board_} function.}
@@ -18,11 +16,18 @@ new_name(old, new, board)
 The object stored as 'new'.
 }
 \description{
-Title
+Rename an R object you're reusing
 }
 \examples{
-board <- pins::board_temp()
-reuse(1, "old", board)
-new_name("old", "new", board)
-reuse(name = "new")
+library(pins)
+
+board <- board_temp()
+x <- 1
+
+x \%>\% reuse("old", board)
+pin_exists("old", board = board)
+
+"old" \%>\% new_name("new", board)
+pin_exists("old", board = board)
+pin_exists("new", board = board)
 }
