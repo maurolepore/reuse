@@ -6,16 +6,13 @@ test_that("takes a custom `board`", {
 
 # TODO: Tests it uses a default board board_reuse()
 
-test_that("deletes the old name", {
+test_that("replaces the old name with the new name", {
   board <- pins::board_temp()
-  reuse(1, "old", board)
-  new_name("old", "new", board)
-  expect_false(pins::pin_exists(board = board, "old"))
-})
+  x <- 1
+  reuse(x, "old", board)
 
-test_that("returns the object 'new'", {
-  board <- pins::board_temp()
-  x <- reuse(1, "old", board)
   out <- new_name("old", "new", board)
+  expect_false(pins::pin_exists(board = board, "old"))
+  expect_true(pins::pin_exists(board = board, "new"))
   expect_equal(out, x)
 })
