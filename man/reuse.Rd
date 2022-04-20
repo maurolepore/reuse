@@ -8,12 +8,12 @@
 reuse(
   x,
   name,
-  board = board_reuse(),
+  board = board(),
   type = "qs",
   update = getOption("reuse.update", default = FALSE)
 )
 
-board_reuse()
+board()
 }
 \arguments{
 \item{x}{An object (typically a data frame) to pin.}
@@ -43,9 +43,9 @@ two
 two <- 2 \%>\% reuse("one", update = TRUE)
 two
 withr::local_options(list(reuse.board = pins::board_temp()))
-board_reuse()
+board()
 
-pins::pin_exists(board_reuse(), name = "one")
+pins::pin_exists(board(), name = "one")
 1 \%>\% reuse("one")
-pins::pin_exists(board_reuse(), name = "one")
+pins::pin_exists(board(), name = "one")
 }
