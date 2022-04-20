@@ -33,3 +33,10 @@ test_that("new_name() deletes 'old' in the end with no error", {
 
   expect_false(pins::pin_exists(board = board, "old"))
 })
+
+test_that("returns the object 'new'", {
+  board <- pins::board_temp()
+  x <- reuse(1, "old", board)
+  out <- new_name("old", "new", board)
+  expect_equal(out, x)
+})
