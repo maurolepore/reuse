@@ -6,7 +6,6 @@ test_that("takes a custom `board`", {
 
 test_that("uses a default board", {
   default <- board_reuse()
-  withr::defer(pins::pin_delete(default, "old"))
 
   reuse(1, "old")
   new_name("old", "new")
