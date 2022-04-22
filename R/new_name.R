@@ -18,7 +18,7 @@
 #' "old" %>% new_name("new", board)
 #' pin_exists("old", board = board)
 #' pin_exists("new", board = board)
-new_name <- function(old, new, board) {
+new_name <- function(old, new, board = board_reuse()) {
   new_pin <- pins::pin_read(board, old)
   new <- reuse(new_pin, new, board)
 
