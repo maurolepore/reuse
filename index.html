@@ -61,7 +61,6 @@
 <div class="page-header"><h1 id="reuse">reuse<a class="anchor" aria-label="anchor" href="#reuse"></a>
 </h1></div>
 <!-- badges: start -->
-
 <p>The goal of reuse is to avoid re-running slow computations, particularly in pipes.</p>
 <p><code><a href="reference/reuse.html">reuse::reuse()</a></code> combines features of <code><a href="https://pins.rstudio.com/reference/pin_read.html" class="external-link">pins::pin_read()</a></code> and <code><a href="https://pins.rstudio.com/reference/pin_read.html" class="external-link">pins::pin_write()</a></code> with some differences:</p>
 <ul>
@@ -93,18 +92,14 @@
 <span class="va">two</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="reference/reuse.html">reuse</a></span><span class="op">(</span><span class="st">"one"</span><span class="op">)</span>
 <span class="va">two</span>
 <span class="co">#&gt; [1] 1</span></code></pre></div>
-<ul>
-<li>You can update the cache for one call with the argument <code>update</code>.</li>
-</ul>
+<ul><li>You can update the cache for one call with the argument <code>update</code>.</li></ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">two</span> <span class="op">&lt;-</span> <span class="fl">2</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="reference/reuse.html">reuse</a></span><span class="op">(</span><span class="st">"one"</span>, update <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; Replacing version '20220330T212355Z-4ebb2' with '20220330T212355Z-63a73'</span>
 <span class="co">#&gt; Writing to pin 'one'</span>
 <span class="va">two</span>
 <span class="co">#&gt; [1] 2</span></code></pre></div>
-<ul>
-<li>You can update the cache for one session with the option <code>reuse.update</code>.</li>
-</ul>
+<ul><li>You can update the cache for one session with the option <code>reuse.update</code>.</li></ul>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>reuse.update <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
@@ -113,16 +108,12 @@
 <span class="co">#&gt; Writing to pin 'one'</span>
 <span class="va">three</span>
 <span class="co">#&gt; [1] 3</span></code></pre></div>
-<ul>
-<li>The default cache folder uses the appropriate directory for Linux, Mac, and Windows, via the <a href="https://rappdirs.r-lib.org/" class="external-link">rappdirs</a> package.</li>
-</ul>
+<ul><li>The default cache folder uses the appropriate directory for Linux, Mac, and Windows, via the <a href="https://rappdirs.r-lib.org/" class="external-link">rappdirs</a> package.</li></ul>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">cache_dir</span> <span class="op">&lt;-</span> <span class="fu">rappdirs</span><span class="fu">::</span><span class="fu"><a href="https://rappdirs.r-lib.org/reference/user_cache_dir.html" class="external-link">user_cache_dir</a></span><span class="op">(</span><span class="st">"reuse"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.exists</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">cache_dir</span>, <span class="st">"one"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] TRUE</span></code></pre></div>
-<ul>
-<li>It’s based on the <a href="https://pins.rstudio.com/" class="external-link">pins</a> package, which you can use to manage your cache folder a.k.a. “board”.</li>
-</ul>
+<ul><li>It’s based on the <a href="https://pins.rstudio.com/" class="external-link">pins</a> package, which you can use to manage your cache folder a.k.a. “board”.</li></ul>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://pins.rstudio.com/" class="external-link">pins</a></span><span class="op">)</span>
 
@@ -145,9 +136,7 @@
 <span class="co">#&gt;   ..$ version: chr "20220330T212355Z-f9a7c"</span>
 
 <span class="va">board</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="https://pins.rstudio.com/reference/pin_delete.html" class="external-link">pin_delete</a></span><span class="op">(</span><span class="st">"one"</span><span class="op">)</span></code></pre></div>
-<ul>
-<li>You can use a custom cache folder with the argument <code>board</code>.</li>
-</ul>
+<ul><li>You can use a custom cache folder with the argument <code>board</code>.</li></ul>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">custom</span> <span class="op">&lt;-</span> <span class="fu">pins</span><span class="fu">::</span><span class="fu"><a href="https://pins.rstudio.com/reference/board_folder.html" class="external-link">board_folder</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="fl">1</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="reference/reuse.html">reuse</a></span><span class="op">(</span><span class="st">"abc"</span>, board <span class="op">=</span> <span class="va">custom</span><span class="op">)</span>
@@ -157,9 +146,7 @@
 
 <span class="fu">pins</span><span class="fu">::</span><span class="fu"><a href="https://pins.rstudio.com/reference/pin_read.html" class="external-link">pin_read</a></span><span class="op">(</span>board <span class="op">=</span> <span class="va">custom</span>, <span class="st">"abc"</span><span class="op">)</span>
 <span class="co">#&gt; [1] 1</span></code></pre></div>
-<ul>
-<li>You can use a custom cache folder with the option <code>reuse.board</code>.</li>
-</ul>
+<ul><li>You can use a custom cache folder with the option <code>reuse.board</code>.</li></ul>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>reuse.board <span class="op">=</span> <span class="va">custom</span><span class="op">)</span>
 <span class="fl">1</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span> <span class="fu"><a href="reference/reuse.html">reuse</a></span><span class="op">(</span><span class="st">"def"</span>, board <span class="op">=</span> <span class="va">custom</span><span class="op">)</span>
@@ -222,7 +209,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer>

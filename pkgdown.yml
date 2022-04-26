@@ -1,8 +1,8 @@
 pandoc: 2.7.3
-pkgdown: 2.0.2
+pkgdown: 2.0.3
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-04-06T10:43Z
+last_built: 2022-04-26T11:30Z
 urls:
   reference: https://maurolepore.github.io/reuse/reference
   article: https://maurolepore.github.io/reuse/articles
