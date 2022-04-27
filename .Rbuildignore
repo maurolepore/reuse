@@ -7,6 +7,3 @@
 ^pkgdown$
 ^\.github$
 ^codecov\.yml$
-^reuse\.Rcheck$
-^reuse.*\.tar\.gz$
-^reuse.*\.tgz$
