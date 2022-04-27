@@ -4,6 +4,3 @@
 .httr-oauth
 .DS_Store
 docs
-reuse.Rcheck/
-reuse*.tar.gz
-reuse*.tgz
