@@ -4,7 +4,7 @@
 \alias{new_name}
 \title{Rename an R object you're reusing}
 \usage{
-new_name(old, new, board)
+new_name(old, new, board = reuse::board())
 }
 \arguments{
 \item{old, new}{String. The name of the old and new objects.}
