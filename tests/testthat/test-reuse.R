@@ -3,10 +3,28 @@ test_that("it plays well with the pipe", {
   expect_equal(out, 1)
 })
 
-test_that("writes to a given folder", {
-  board <- pins::board_temp()
-  reuse(1, "one", board = board)
-  expect_true(pins::pin_exists(board, "one"))
+test_that("by default uses board_reuse()", {
+  default <- board_reuse()
+  withr::defer(pins::pin_delete(default, "one"))
+  reuse(1, "one")
+  expect_true(pins::pin_exists(default, "one"))
+})
+
+test_that("writes to a custom board with an argument", {
+  default <- reuse::board_reuse()
+  custom <- pins::board_temp()
+
+  reuse(1, "one", board = custom)
+  expect_false(pins::pin_exists(default, "one"))
+  expect_true(pins::pin_exists(custom, "one"))
+})
+
+test_that("writes to a custom board with an option", {
+  custom <- pins::board_temp()
+  withr::local_options(list(reuse.board = custom))
+
+  reuse(1, "one")
+  expect_true(pins::pin_exists(custom, "one"))
 })
 
 test_that("if x already exists in the board, it's reused not recomputed", {
@@ -16,42 +34,25 @@ test_that("if x already exists in the board, it's reused not recomputed", {
   expect_equal(two, 1)
 })
 
-test_that("defaults to using the cache of the reuse package", {
-  withr::defer(pins::pin_delete(board, "one"))
-
-  board <- pins::board_folder(rappdirs::user_cache_dir("reuse"))
-  reuse(1, "one")
-  expect_true(pins::pin_exists(board, "one"))
-})
-
-test_that("supports update with an argument", {
+test_that("updates an object with an argument", {
   board <- pins::board_temp()
   one <- 1 %>% reuse("one", board = board)
   two <- 2 %>% reuse("one", board = board, update = TRUE)
   expect_equal(two, 2)
 })
 
-test_that("supports update with an option", {
+test_that("updates an object with an option", {
   withr::local_options(list(reuse.update = TRUE))
-
   board <- pins::board_temp()
   one <- 1 %>% reuse("one", board = board)
   two <- 2 %>% reuse("one", board = board)
   expect_equal(two, 2)
 })
 
-test_that("by default saves .qs files", {
+test_that("by default saves files as .qs", {
   board <- pins::board_temp()
 
   reuse(1, "one", board = board)
   type <- pins::pin_meta(board = board, "one")$type
   expect_equal(type, "qs")
-})
-
-test_that("can use a custom board set with an option", {
-  custom <- pins::board_temp()
-  withr::local_options(list(reuse.board = custom))
-
-  reuse(1, "one")
-  expect_true(pins::pin_exists(custom, "one"))
 })

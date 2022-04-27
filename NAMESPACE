@@ -2,6 +2,7 @@
 
 export("%>%")
 export(board_reuse)
+export(new_name)
 export(reuse)
 importFrom(fs,dir_ls)
 importFrom(fs,path)
