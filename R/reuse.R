@@ -15,7 +15,7 @@
 #' two
 reuse <- function(x,
                   name,
-                  board = board_reuse(),
+                  board = reuse::board(),
                   type = "qs",
                   update = getOption("reuse.update", default = FALSE)) {
   if (update || !pins::pin_exists(board, name = name)) {
@@ -28,12 +28,12 @@ reuse <- function(x,
 #' @export
 #' @examples
 #' withr::local_options(list(reuse.board = pins::board_temp()))
-#' board_reuse()
+#' board()
 #'
-#' pins::pin_exists(board_reuse(), name = "one")
+#' pins::pin_exists(board(), name = "one")
 #' 1 %>% reuse("one")
-#' pins::pin_exists(board_reuse(), name = "one")
-board_reuse <- function() {
+#' pins::pin_exists(board(), name = "one")
+board <- function() {
   getOption(
     "reuse.board",
     default = pins::board_folder(rappdirs::user_cache_dir("reuse"))

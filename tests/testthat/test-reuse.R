@@ -3,15 +3,15 @@ test_that("it plays well with the pipe", {
   expect_equal(out, 1)
 })
 
-test_that("by default uses board_reuse()", {
-  default <- board_reuse()
+test_that("by default uses board()", {
+  default <- board()
   withr::defer(pins::pin_delete(default, "one"))
   reuse(1, "one")
   expect_true(pins::pin_exists(default, "one"))
 })
 
 test_that("writes to a custom board with an argument", {
-  default <- reuse::board_reuse()
+  default <- board()
   custom <- pins::board_temp()
 
   reuse(1, "one", board = custom)
